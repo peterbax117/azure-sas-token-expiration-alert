@@ -15,6 +15,21 @@ Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en
 
 ## Create the Azure Key Vault
 
-Search for Key Vault in the Azure Portal and then open the Key Vault interface
+I would recommend creating a new Key Vault for managing these Alerts.  The cost is minimal and can be kept in a central management subscription that other applications or workloads could use.
+
+First, search for "_Key Vault_" in the Azure Portal and then open the Key Vault interface.  
+
+Choose _+ Create_
 
 ![visual](/images/01-KV-Create.png)
+
+Fill in the Basic information about the vault. I am keeping the default settings for _Days to retain deleted vaults_ and _Purge protection_ as well as the Standard _Pricing tier_.  Choose _Next_
+
+![visual](/images/02-KV-Basic-Info.png)
+
+For Access Configuration, use the default settings.  You do not need to check any of the boxes for _Resource access_. 
+Choose _Next_
+
+![visual](/images/03-KV-Access.png)
+
+For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Becasue we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then 
