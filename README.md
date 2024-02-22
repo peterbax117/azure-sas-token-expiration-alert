@@ -3,7 +3,15 @@ Create a simple alert solution for a shared access signature (SAS) token in an A
 
 We will assume you already have the SAS token and know the expiration date of the token.  We will show you how to create the Key Vault and then setup the Action Group for alerting.  We will also add the SAS token as a Secret within the vault.  Then we will setup monitoring of certain Events related to expiration date for the Secret you created.
 
-This involves 
+This involves using Secrets store and the following Events that are avaible in the Key Vault:
+
+* _Microsoft.KeyVault.SecretNearExpiry_
+* _Microsoft.KeyVault.SecretExpired_
+
+> [!NOTE]
+> _SecretNearExpiry_ is triggered when the current version of a secret is about to expire. (The event is ***triggered 30 days before*** the expiration date.)  _SecretExpired_ is triggered when the current version of a secret is expired.
+
+Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-key-vault?tabs=event-grid-event-schema#available-event-types)
 
 ## Create the Azure Key Vault
 
