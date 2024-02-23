@@ -51,4 +51,36 @@ The Key Vault should be created and deployed and you should be able to access it
 
 You or your organization may already have Action Groups setup in Azure Monitor.  If not, we will create one now to send the email alert to when the Events fire.
 
-First, search for "_Azure Monitor_" in the Azure Portal and then open the Azure Monitor interface. 
+First, search for "_Azure Monitor_" in the Azure Portal and then open the Azure Monitor interface. In the Azure Monitor interface choose _Alerts_ in the left navigation menu.  Then choose _Action Groups_ in the upper menu.
+
+![visual](/images/2024-02-AG-01-Monitor.png)
+
+In the Action Group menu, choose _+ Create_
+
+![visual](/images/2024-02-AG-02-Create.png)
+
+In the Create action group form, fill in the basic information.  Region should be kept as Global.  Keep in mind that the Display Name has a 12 character limit.
+
+Choose _Next_
+
+![visual](/images/2024-02-AG-03-Basics.png)
+
+For Notifications, choose _Email/SMS message/Push/Voice_.  Give it a name like "Notify me by email." 
+
+Click the _Edit_ button
+
+![visual](/images/2024-02-AG-04-Notifications.png)
+
+For this example I am going to send an email to myself.  You can choose any type of notification that makes sense for you and your organization.  Once you have chosen the notification type and settings, choose _"Yes"_ for _Enable the common alert schema_.
+
+Click _OK_
+
+![visual](/images/2024-02-AG-05-Email.png)
+
+Review all of the configuration settings and then click _Create_
+
+![visual](/images/2024-02-AG-06-Review.png)
+
+## Create Event Subscriptions for Secret Expiring and Secret Expired
+
+
