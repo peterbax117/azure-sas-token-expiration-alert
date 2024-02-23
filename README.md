@@ -32,4 +32,22 @@ Choose _Next_
 
 ![visual](/images/03-KV-Access.png)
 
-For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Becasue we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then 
+For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Becasue we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then you would need to consider how the Key Vault is accessed.
+
+![visual](/images/04-KV-Network.png)
+
+Review all of the configuration settings and then click _Create_
+
+![visual](/images/05-KV-Review.png)
+
+The Key Vault should be created and deployed and you should be able to access it.  Keep in mind that in order to enter a Secret into the vault you will need to have the proper permissions.  Owner of the Key Vault is not sufficient to create or manage secrets.  One of the following roles will be needed to create or manage Secrets directly:
+
+* Key Vault Administrator
+* Key Vault Secrets Officer
+
+
+## Create an Action Group in Azure Monitor
+
+You or your organization may already have Action Groups setup in Azure Monitor.  If not, we will create one now to send the email alert to when the Events fire.
+
+First, search for "_Azure Monitor_" in the Azure Portal and then open the Azure Monitor interface. 
