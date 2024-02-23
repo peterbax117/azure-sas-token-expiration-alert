@@ -1,4 +1,5 @@
-# Azure Storage Account Shared Access Signature (SAS) Token Alert Solution 
+# Azure Storage Account Shared Access Signature (SAS) Token Alert Solution
+
 Create a simple alert solution for a shared access signature (SAS) token in an Azure storage account.  This solution uses a Key Vault to manage the Alert as the Storage Account does not offer an option to alert for SAS expiration due to the design of the product.  We will then use several Events that are avaialble in Key Vault to send an email alert to a user or distribution group.
 
 We will assume you already have the SAS token and know the expiration date of the token.  We will show you how to create the Key Vault and then setup the Action Group for alerting.  We will also add the SAS token as a Secret within the vault.  Then we will setup monitoring of certain Events related to expiration date for the Secret you created.
@@ -21,24 +22,24 @@ First, search for "_Key Vault_" in the Azure Portal and then open the Key Vault 
 
 Choose _+ Create_
 
-![visual](/images/01-KV-Create.png)
+![visual](/images/2024-02-KV-01-Create.png)
 
 Fill in the Basic information about the vault. I am keeping the default settings for _Days to retain deleted vaults_ and _Purge protection_ as well as the Standard _Pricing tier_.  Choose _Next_
 
-![visual](/images/02-KV-Basic-Info.png)
+![visual](/images/2024-02-KV-02-Basic-Info.png)
 
 For Access Configuration, use the default settings.  You do not need to check any of the boxes for _Resource access_. 
 Choose _Next_
 
-![visual](/images/03-KV-Access.png)
+![visual](/images/2024-02-KV-03-Access.png)
 
 For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Becasue we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then you would need to consider how the Key Vault is accessed.
 
-![visual](/images/04-KV-Network.png)
+![visual](/images/2024-02-KV-04-Network.png)
 
 Review all of the configuration settings and then click _Create_
 
-![visual](/images/05-KV-Review.png)
+![visual](/images/2024-02-KV-05-Review.png)
 
 The Key Vault should be created and deployed and you should be able to access it.  Keep in mind that in order to enter a Secret into the vault you will need to have the proper permissions.  Owner of the Key Vault is not sufficient to create or manage secrets.  One of the following roles will be needed to create or manage Secrets directly:
 
