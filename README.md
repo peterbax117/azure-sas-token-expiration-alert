@@ -83,4 +83,16 @@ Review all of the configuration settings and then click _Create_
 
 ## Create Event Subscriptions for Secret Expiring and Secret Expired
 
+We are going to create 2 different event subscriptions.  The first will be for when the event SecretExpiryNear is fired and the second for when the event SecretExpired is fired.  When these events fire an email will be sent to a user or distribution group.  In the case of this example I will be sending an email to myself.
 
+Go to the Key Vault created earlier and click on the Events in the left navigation menu.
+
+Choose _+ Event Subscription_
+
+![visual](/images/2024-02-EV-01-Event-Start.png)
+
+Enter a name for the Event Subscription.  Choose the Event Schema.  Create or choose a System Topic Name.
+
+* Event 
+*
+*
