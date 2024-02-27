@@ -107,3 +107,11 @@ For this Event we will choose _Secret Near Expiry_ only.
 
 ![visual](/images/2024-02-EV-04-Type-Near.png)
 
+![visual](/images/2024-02-EV-05-Type-Expiry.png)
+
+For the Enpoint Type we will choose _Azure Monitor Alert_
+
+![visual](/images/2024-02-EV-06-Endpoint.png)
+
+We then need to configure the endpoint.  Click on the _Configure an enpoint_ link.
+
