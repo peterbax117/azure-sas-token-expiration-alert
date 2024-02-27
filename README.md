@@ -93,6 +93,17 @@ Choose _+ Event Subscription_
 
 Enter a name for the Event Subscription.  Choose the Event Schema.  Create or choose a System Topic Name.
 
-* Event 
-*
-*
+* Event Subscription: "SAS-Token-Expiring" (You can choose whatever name you like here.  Be aware this will be part of the email sent for the alert so consider that when naming)
+* Event Schema: Cloud Event Schema v1.0
+* System Topic: "sas-topic-kv" (This can be anything you want.  Just create a topic that makes sense here or follows your organization guidelines.)
+
+![visual](/images/2024-02-EV-02-Basics.png)
+
+By default all 9 Event Types will be selected
+
+![visual](/images/2024-02-EV-03-Type-Default.png)
+
+For this Event we will choose _Secret Near Expiry_ only.
+
+![visual](/images/2024-02-EV-04-Type-Near.png)
+
