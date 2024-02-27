@@ -81,7 +81,7 @@ Review all of the configuration settings and then click _Create_
 
 ![visual](/images/2024-02-AG-06-Review.png)
 
-## Create Event Subscriptions for Secret Expiring and Secret Expired
+## Create Event Subscription for Secret Near Expiry Event and Secret Expired
 
 We are going to create 2 different event subscriptions.  The first will be for when the event SecretExpiryNear is fired and the second for when the event SecretExpired is fired.  When these events fire an email will be sent to a user or distribution group.  In the case of this example I will be sending an email to myself.
 
@@ -114,4 +114,45 @@ For the Enpoint Type we will choose _Azure Monitor Alert_
 ![visual](/images/2024-02-EV-06-Endpoint.png)
 
 We then need to configure the endpoint.  Click on the _Configure an enpoint_ link.
+
+![visual](/images/2024-02-EV-07-Endpoint-Configure.png)
+
+In the ***Select Monitor Alert Configuration*** form that opens, for Alert Severity, choose _Sev 1 (Error)_(You can choose what you want here, but this made the most sense for me when creating this alert).
+
+Check the box for _Select action groups_.  Then choose the Action Group you created earlier or choose one that already exsists that you want to send the alert to.
+
+![visual](/images/2024-02-EV-08-Endpoint-AG.png)
+
+Create an _Alert description_.  Consider that this description will be in the email sent when the alert fires.  If you are using email rules or some other type of automation you may want to key off of this description.
+
+Here is what I used:
+
+* A SAS Token will expire in the next 30 days.  Please review.
+
+![visual](/images/2024-02-EV-09-Endpoint-Description.png)
+
+Click _Confirm Selection_ button to finish configuring the endpoint.
+
+![visual](/images/2024-02-EV-10-Endpoint-Confirm.png)
+
+We will now come back to the Basics section for the Event and can click the _Create_ button as all the sections should be shown as filled out.  We will not use any of the other sections such as Filters, Additional Features, Delivery Properties, or Advanced Editor.
+
+![visual](/images/2024-02-EV-11-Event-Create.png)
+
+We now have a working Event Subscription
+
+## Create Event Subscription for Secret Expired
+
+We will now create a second event for when the Secret is Expired.  In this case, I am going to only call out the differences needed for this Event Subscription.
+
+Give the Event a name and choose the Schema, and then reuse the System Topic Name from above
+
+* Event Name: SAS-Token-Expired
+* Event Schema: Cloud Event Schema v1.0
+
+![visual](/images/2024-02-EV-12-Event-Expired.png)
+
+For the _Event Type_ we will choose ***Secret Expired***
+
+![visual](/images/2024-02-EV-13-Type-Expired.png)
 
