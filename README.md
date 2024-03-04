@@ -21,10 +21,10 @@ Table of Contents
 
 [Create the Azure Key Vault](../main/README.md#create-the-azure-key-vault)  
 [Create an Action Group in Azure Monitor](../main/README.md#create-an-action-group-in-azure-monitor)  
-[Create Event Subscription for Secret Near Expiry Event](../main/README.md#create-event-subscription-for-secret-near-expiry-event-and-secret-expired)  
+[Create Event Subscription for Secret Near Expiry Event](../main/README.md#create-event-subscription-for-secret-near-expiry-event)  
 [Create Event Subscription for Secret Expired](../main/README.md#create-event-subscription-for-secret-expired)  
-[Create the Secret in the Key Vault](../main/README.md#create-the-azure-key-vault)  
-[Emails Examples for Secret Expiry and Secret Expired](../main/README.md#create-the-azure-key-vault)  
+[Create the Secret in the Key Vault](../main/README.md#create-the-secret-in-the-key-vault)  
+[Email Examples for Secret Expiry and Secret Expired](../main/README.md#email-examples-for-secret-expiry-and-secret-expired)  
 
 ## Create the Azure Key Vault
 
@@ -203,7 +203,7 @@ You will then be returned to the main Secret page.  Verify that you have inputed
 
 ![visual](/images/2024-02-S-04-Verify.png)
 
-## Emails Examples for Secret Expiry and Secret Expired
+## Email Examples for Secret Expiry and Secret Expired
 
 These are examples of the emails you will receive when a Secret is near expiry or has expired.  Remember that near expiry is within the next 30 days.  For testing purposes the emails will not fire off instantly.  In my testing it can take as long as 15 minutes to receive an email.  You can use certain areas to filter the emails such as wording in the Subject or Body of the message or feed them email into another automation system to then be further utilized.
 
