@@ -2,9 +2,8 @@
 
 Create a simple alert solution for a shared access signature (SAS) token in an Azure storage account.  This solution uses a Key Vault to manage the Alert as the Storage Account does not offer an option to alert for SAS expiration due to the design of the product.  We will then use several Events that are avaialble in Key Vault to send an email alert to a user or distribution group.
 
-An example of a SAS Token for accessing a Storage Account:
-
-sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
+* An example of a SAS Token for accessing a Storage Account:
+* sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
 
 We will assume you already have the SAS token and know the expiration date of the token.  We will show you how to create the Key Vault and then setup the Action Group for alerting.  We will also add the SAS token as a Secret within the vault.  Then we will setup monitoring of certain Events related to expiration date for the Secret you created.
 
@@ -170,3 +169,19 @@ When setting up the Azure Monitor endpoint configuration make the following chan
 
 ## Create the Secret in the Secret Vault
 
+In the Key Vault, choose Secrets in the left navigation
+
+Click _+ Generate/Import_
+
+![visual](/images/2024-02-S-01-Generate.png)
+
+In the _Create a secret_ form we will fill out all the basic information related to the SAS Token.  What I used is listed below.  2 Items of note, first, you can store the SAS Token in the Secret value field, but this is not required.  You can technically put any value you want in this field.  Second, when you set the expiration date pay close attendtion to the year.  The date box will choose a date 2 years into the future by default.  Most SAS Token scenarios will be for 2 years to be sure to choose the correct year for the expiration.
+
+* Upload options: Manual
+* Name: SAS-Token-Petetoso-Corp
+* Secret value: sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
+* Set expiration date: Checked
+* Expiration date: 02/28/2024 06:00:00 PM
+* Enabled: Yes
+
+![visual](/images/2024-02-S-02-Basic.png)
