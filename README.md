@@ -17,6 +17,15 @@ This involves using Secrets store and the following Events that are avaible in t
    
 Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-key-vault?tabs=event-grid-event-schema#available-event-types)
 
+Table of Contents
+
+[Create the Azure Key Vault](../README.md#create-the-azure-key-vault)
+Create an Action Group in Azure Monitor
+Create Event Subscription for Secret Near Expiry Event and Secret Expired
+Create Event Subscription for Secret Expired
+Create the Secret in the Secret Vault
+Emails Examples for Secret Expiry and Secret Expired
+
 ## Create the Azure Key Vault
 
 I would recommend creating a new Key Vault for managing these Alerts.  The cost is minimal and can be kept in a central management subscription that other applications or workloads could use.
@@ -194,18 +203,28 @@ You will then be returned to the main Secret page.  Verify that you have inputed
 
 ![visual](/images/2024-02-S-04-Verify.png)
 
-## Emails for Secret Expiry and Secret Expired
+## Emails Examples for Secret Expiry and Secret Expired
 
-These are examples of the emails you will receive when a Secret is near expiry or has expired.  Remember that near expiry is within the next 30 days.  For testing purposes the emails will not fire off instantly.  In my testing it can take as long as 15 minutes to receive an email.
+These are examples of the emails you will receive when a Secret is near expiry or has expired.  Remember that near expiry is within the next 30 days.  For testing purposes the emails will not fire off instantly.  In my testing it can take as long as 15 minutes to receive an email.  You can use certain areas to filter the emails such as wording in the Subject or Body of the message or feed them email into another automation system to then be further utilized.
 
 ### Near Expiry
 
+The Subject contains the term ***Fired***, then ***Severity***, then ***Azure Monitor Alert***, then the ***Name*** of the alert (SAS-TOKEN-EXPIRING), then in which ***Key Vault***.
+
+In the upper section of the body of the email is the Alert Name, Severity, name of the Key Vault, Description.
+
 ![visual](/images/2024-02-EM-01-ExpiryPart1.png)
+
+In the lower section of the body of the email, the Event Subject and Event Type are the important components.  Event Subject listing the name of the customer this would affect as the customer name was used in the name of the Secret.
 
 ![visual](/images/2024-02-EM-02-ExpiryPart2.png)
 
 ### Expired
 
+In the upper section of the body of the email is the Alert Name, Severity, name of the Key Vault, Description.
+
 ![visual](/images/2024-02-EM-03-ExpiredPart1.png)
+
+In the lower section of the body of the email, the Event Subject and Event Type are the important components.  Event Subject listing the name of the customer this would affect as the customer name was used in the name of the Secret.
 
 ![visual](/images/2024-02-EM-04-ExpiredPart2.png)
