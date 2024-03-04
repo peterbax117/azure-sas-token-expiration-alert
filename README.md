@@ -196,4 +196,16 @@ You will then be returned to the main Secret page.  Verify that you have inputed
 
 ## Emails for Secret Expiry and Secret Expired
 
+These are examples of the emails you will receive when a Secret is near expiry or has expired.  Remember that near expiry is within the next 30 days.  For testing purposes the emails will not fire off instantly.  In my testing it can take as long as 15 minutes to receive an email.
 
+### Near Expiry
+
+![visual](/images/2024-02-EM-01-ExpiryPart1.png)
+
+![visual](/images/2024-02-EM-02-ExpiryPart2.png)
+
+### Expired
+
+![visual](/images/2024-02-EM-03-ExpiredPart1.png)
+
+![visual](/images/2024-02-EM-04-ExpiredPart2.png)
