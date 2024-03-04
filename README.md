@@ -12,8 +12,10 @@ This involves using Secrets store and the following Events that are avaible in t
 * _Microsoft.KeyVault.SecretNearExpiry_
 * _Microsoft.KeyVault.SecretExpired_
 
+
 > [!NOTE]
 > _SecretNearExpiry_ is triggered when the current version of a secret is about to expire. (The event is ***triggered 30 days before*** the expiration date.)  _SecretExpired_ is triggered when the current version of a secret is expired.
+
 
 Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-key-vault?tabs=event-grid-event-schema#available-event-types)
 
