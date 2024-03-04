@@ -19,7 +19,7 @@ Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en
 
 Table of Contents
 
-[Create the Azure Key Vault](../README.md#create-the-azure-key-vault)
+[Create the Azure Key Vault](../main/README.md#create-the-azure-key-vault)
 Create an Action Group in Azure Monitor
 Create Event Subscription for Secret Near Expiry Event and Secret Expired
 Create Event Subscription for Secret Expired
