@@ -19,12 +19,12 @@ Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en
 
 Table of Contents
 
-[Create the Azure Key Vault](../main/README.md#create-the-azure-key-vault)
-Create an Action Group in Azure Monitor
-Create Event Subscription for Secret Near Expiry Event and Secret Expired
-Create Event Subscription for Secret Expired
-Create the Secret in the Secret Vault
-Emails Examples for Secret Expiry and Secret Expired
+[Create the Azure Key Vault](../main/README.md#create-the-azure-key-vault)  
+[Create an Action Group in Azure Monitor](../main/README.md#create-an-action-group-in-azure-monitor)  
+[Create Event Subscription for Secret Near Expiry Event](../main/README.md#create-event-subscription-for-secret-near-expiry-event-and-secret-expired)  
+[Create Event Subscription for Secret Expired](../main/README.md#create-event-subscription-for-secret-expired)  
+[Create the Secret in the Key Vault](../main/README.md#create-the-azure-key-vault)  
+[Emails Examples for Secret Expiry and Secret Expired](../main/README.md#create-the-azure-key-vault)  
 
 ## Create the Azure Key Vault
 
@@ -93,7 +93,7 @@ Review all of the configuration settings and then click _Create_
 
 ![visual](/images/2024-02-AG-06-Review.png)
 
-## Create Event Subscription for Secret Near Expiry Event and Secret Expired
+## Create Event Subscription for Secret Near Expiry Event
 
 We are going to create 2 different event subscriptions.  The first will be for when the event SecretExpiryNear is fired and the second for when the event SecretExpired is fired.  When these events fire an email will be sent to a user or distribution group.  In the case of this example I will be sending an email to myself.
 
@@ -176,7 +176,7 @@ When setting up the Azure Monitor endpoint configuration make the following chan
 
 ![visual](/images/2024-02-EV-14-Alert-Expired.png)
 
-## Create the Secret in the Secret Vault
+## Create the Secret in the Key Vault
 
 In the Key Vault, choose Secrets in the left navigation
 
