@@ -185,3 +185,15 @@ In the _Create a secret_ form we will fill out all the basic information related
 * Enabled: Yes
 
 ![visual](/images/2024-02-S-02-Basic.png)
+
+Then click _Create_ to save the form
+
+![visual](/images/2024-02-S-03-Save.png)
+
+You will then be returned to the main Secret page.  Verify that you have inputed the correct expiration date.
+
+![visual](/images/2024-02-S-04-Verify.png)
+
+## Emails for Secret Expiry and Secret Expired
+
+
