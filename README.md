@@ -1,6 +1,6 @@
 # Azure Storage Account Shared Access Signature (SAS) Token Expiring Alert Solution
 
-Create a simple alert solution for a shared access signature (SAS) token in an Azure storage account.  This solution uses a Key Vault to manage the Alert as the Storage Account does not offer an option to alert for SAS expiration due to the design of the product.  We will then use several Events that are avaialble in Key Vault to send an email alert to a user or distribution group.
+Create a simple alert solution for a shared access signature (SAS) token in an Azure storage account.  This solution uses a Key Vault to manage the Alert as the Storage Account does not offer an option to alert for SAS expiration due to the design of the product.  We will then use several Events that are available in Key Vault to send an email alert to a user or distribution group.
 
 * An example of a SAS Token for accessing a Storage Account:
 * sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
