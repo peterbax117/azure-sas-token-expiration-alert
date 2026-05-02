@@ -212,26 +212,6 @@ Verify the Secret was created successfully.
 
 ## Email Examples for Secret Expiry and Secret Expired
 
-Below are examples of the emails you will receive when the events fire.
-
-**Secret Near Expiry Email:**
-
-![visual](/images/2024-02-EM-01-ExpiryPart1.png)
-
-![visual](/images/2024-02-EM-02-ExpiryPart2.png)
-
-**Secret Expired Email:**
-
-![visual](/images/2024-02-EM-03-ExpiredPart1.png)
-
-![visual](/images/2024-02-EM-04-ExpiredPart2.png)
-
-You will then be returned to the main Secret page.  Verify that you have inputed the correct expiration date.
-
-![visual](/images/2024-02-S-04-Verify.png)
-
-## Email Examples for Secret Expiry and Secret Expired
-
 These are examples of the emails you will receive when a Secret is near expiry or has expired.  Remember that near expiry is within the next 30 days.  For testing purposes the emails will not fire off instantly.  In my testing it can take as long as 15 minutes to receive an email.  You can use certain areas to filter the emails such as wording in the Subject or Body of the message or feed them email into another automation system to then be further utilized.
 
 ### Near Expiry
