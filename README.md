@@ -3,11 +3,11 @@
 Create a simple alert solution for a shared access signature (SAS) token in an Azure storage account.  This solution uses a Key Vault to manage the Alert as the Storage Account does not offer an option to alert for SAS expiration due to the design of the product.  We will then use several Events that are available in Key Vault to send an email alert to a user or distribution group.
 
 * An example of a SAS Token for accessing a Storage Account:
-* sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
+* `sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=EXAMPLE_SIGNATURE_REPLACE_WITH_YOUR_OWN%3D`
 
 We will assume you already have the SAS token and know the expiration date of the token.  We will show you how to create the Key Vault and then setup the Action Group for alerting.  We will also add the SAS token as a Secret within the vault.  Then we will setup monitoring of certain Events related to expiration date for the Secret you created.
 
-This involves using Secrets store and the following Events that are avaible in the Key Vault:
+This involves using Secrets store and the following Events that are available in the Key Vault:
 
 * _Microsoft.KeyVault.SecretNearExpiry_
 * _Microsoft.KeyVault.SecretExpired_
@@ -17,14 +17,20 @@ This involves using Secrets store and the following Events that are avaible in t
    
 Reference: [Azure Key Vault as Event Grid source](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-key-vault?tabs=event-grid-event-schema#available-event-types)
 
-Table of Contents
+## Prerequisites
 
-[Create the Azure Key Vault](../main/README.md#create-the-azure-key-vault)  
-[Create an Action Group in Azure Monitor](../main/README.md#create-an-action-group-in-azure-monitor)  
-[Create Event Subscription for Secret Near Expiry Event](../main/README.md#create-event-subscription-for-secret-near-expiry-event)  
-[Create Event Subscription for Secret Expired](../main/README.md#create-event-subscription-for-secret-expired)  
-[Create the Secret in the Key Vault](../main/README.md#create-the-secret-in-the-key-vault)  
-[Email Examples for Secret Expiry and Secret Expired](../main/README.md#email-examples-for-secret-expiry-and-secret-expired)  
+- An Azure subscription
+- A Storage Account with an existing SAS token and known expiration date
+- Permissions to create a Key Vault (and one of **Key Vault Administrator** or **Key Vault Secrets Officer** roles to manage secrets)
+
+## Table of Contents
+
+- [Create the Azure Key Vault](#create-the-azure-key-vault)
+- [Create an Action Group in Azure Monitor](#create-an-action-group-in-azure-monitor)
+- [Create Event Subscription for Secret Near Expiry Event](#create-event-subscription-for-secret-near-expiry-event)
+- [Create Event Subscription for Secret Expired](#create-event-subscription-for-secret-expired)
+- [Create the Secret in the Key Vault](#create-the-secret-in-the-key-vault)
+- [Email Examples for Secret Expiry and Secret Expired](#email-examples-for-secret-expiry-and-secret-expired)
 
 ## Create the Azure Key Vault
 
@@ -45,7 +51,7 @@ Choose _Next_
 
 ![visual](/images/2024-02-KV-03-Access.png)
 
-For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Becasue we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then you would need to consider how the Key Vault is accessed.
+For Networking, adjust settings based on the security requirements of your organization.  As an example, most of the customers I work with require private endpoints for any Azure resource.  Because we are using the Key Vault as a self contained repository, access to it other than from the Azure portal is not required.  If you wanted to scale this solution or automate the entry of the Secret into the Key Vault then you would need to consider how the Key Vault is accessed.
 
 ![visual](/images/2024-02-KV-04-Network.png)
 
@@ -58,6 +64,7 @@ The Key Vault should be created and deployed and you should be able to access it
 * Key Vault Administrator
 * Key Vault Secrets Officer
 
+![visual](/images/2024-02-KV-06-Event-Start.png)
 
 ## Create an Action Group in Azure Monitor
 
@@ -121,17 +128,17 @@ For this Event we will choose _Secret Near Expiry_ only.
 
 ![visual](/images/2024-02-EV-05-Type-Expiry.png)
 
-For the Enpoint Type we will choose _Azure Monitor Alert_
+For the Endpoint Type we will choose _Azure Monitor Alert_
 
 ![visual](/images/2024-02-EV-06-Endpoint.png)
 
-We then need to configure the endpoint.  Click on the _Configure an enpoint_ link.
+We then need to configure the endpoint.  Click on the _Configure an endpoint_ link.
 
 ![visual](/images/2024-02-EV-07-Endpoint-Configure.png)
 
 In the ***Select Monitor Alert Configuration*** form that opens, for Alert Severity, choose _Sev 1 (Error)_(You can choose what you want here, but this made the most sense for me when creating this alert).
 
-Check the box for _Select action groups_.  Then choose the Action Group you created earlier or choose one that already exsists that you want to send the alert to.
+Check the box for _Select action groups_.  Then choose the Action Group you created earlier or choose one that already exists that you want to send the alert to.
 
 ![visual](/images/2024-02-EV-08-Endpoint-AG.png)
 
@@ -171,7 +178,7 @@ For the _Event Type_ we will choose ***Secret Expired***
 When setting up the Azure Monitor endpoint configuration make the following changes:
 
 * Alert severity: Sev 0 (Critical)
-* Check _Select action groups_: Choose the action group from above or relelvant group for your organization
+* Check _Select action groups_: Choose the action group from above or relevant group for your organization
 * Alert description: A SAS Token has EXPIRED! Please ACT NOW!
 
 ![visual](/images/2024-02-EV-14-Alert-Expired.png)
@@ -184,11 +191,11 @@ Click _+ Generate/Import_
 
 ![visual](/images/2024-02-S-01-Generate.png)
 
-In the _Create a secret_ form we will fill out all the basic information related to the SAS Token.  What I used is listed below.  2 Items of note, first, you can store the SAS Token in the Secret value field, but this is not required.  You can technically put any value you want in this field.  Second, when you set the expiration date pay close attendtion to the year.  The date box will choose a date 2 years into the future by default.  Most SAS Token scenarios will be for 2 years to be sure to choose the correct year for the expiration.
+In the _Create a secret_ form we will fill out all the basic information related to the SAS Token.  What I used is listed below.  2 Items of note, first, you can store the SAS Token in the Secret value field, but this is not required.  You can technically put any value you want in this field.  Second, when you set the expiration date pay close attention to the year.  The date box will choose a date 2 years into the future by default.  Most SAS Token scenarios will be for 2 years so be sure to choose the correct year for the expiration.
 
 * Upload options: Manual
 * Name: SAS-Token-Petetoso-Corp
-* Secret value: sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=3bRdnoOoCcZVXZ6X2a8IUaKrDFJnSDrkJQcRZuvbFto%3D
+* Secret value: `sv=2022-11-02&ss=bf&srt=sco&sp=rwdlaciyx&se=2024-03-01T02:00:00Z&st=2024-02-09T18:44:32Z&spr=https&sig=EXAMPLE_SIGNATURE_REPLACE_WITH_YOUR_OWN%3D`
 * Set expiration date: Checked
 * Expiration date: 02/28/2024 06:00:00 PM
 * Enabled: Yes
@@ -198,6 +205,26 @@ In the _Create a secret_ form we will fill out all the basic information related
 Then click _Create_ to save the form
 
 ![visual](/images/2024-02-S-03-Save.png)
+
+Verify the Secret was created successfully.
+
+![visual](/images/2024-02-S-04-Verify.png)
+
+## Email Examples for Secret Expiry and Secret Expired
+
+Below are examples of the emails you will receive when the events fire.
+
+**Secret Near Expiry Email:**
+
+![visual](/images/2024-02-EM-01-ExpiryPart1.png)
+
+![visual](/images/2024-02-EM-02-ExpiryPart2.png)
+
+**Secret Expired Email:**
+
+![visual](/images/2024-02-EM-03-ExpiredPart1.png)
+
+![visual](/images/2024-02-EM-04-ExpiredPart2.png)
 
 You will then be returned to the main Secret page.  Verify that you have inputed the correct expiration date.
 
